@@ -35,27 +35,26 @@ h0=250000; % height
 
 real_2=3.5;    % real part of ep2r
 ep2r=real_2-real_2*0.005i; % layer 2, dry regolith, L
-% ep3r_1=6.2-0.0005i; % layer 3, Basalt (20 degree C) (Ciarletti et al, 2017)
 ep3r=3.1500 - 0.00064i ;  % layer 3, ice, L
 
-P1=zeros(1,10); % array of input parameters
+P1=zeros(1,10); % array of input parameters upper surface
 P1(1)=w0;  P1(2)=tp;  P1(3)=gx;  P1(4)=gy;  P1(5)=h0; 
 P1(7)=sig1;  P1(8)=L1; P1(9)=c0;  
 
 c2=c0/real(sqrt(ep2r));
-P2=zeros(1,10); % array of input parameters
+P2=zeros(1,10); % array of input parameters lower surface
 P2(1)=w0;  P2(2)=tp;  P2(3)=gx;  P2(4)=gy;  P2(5)=h0; 
 P2(7)=sig2; P2(8)=L2;  P2(9)=c2;
 
-tau= (0*tp): ( 0.5* tp) : (20*tp); 
-d=2;
+tau= (0*tp): ( 0.5* tp) : (20*tp); % time difference
+d=2; % layer depth
 
 %% Functions defined in this program.
 
 % [Is0, Is1, Is2, Is3, Is_inco, Is]=NM(tau,P)
 % apply numerical method to surface scattering 
 
-% [atv,ath,ke,delay,Tv12,Tv21,Th12,Th21,Rv12,Rh12,Rv23,Rh23] = RL(freq,d,theta1,ep2r,ep3r,sig);
+% [atv,ath,a,delay,Tv12,Tv21,Th12,Th21,Rv12,Rh12,Rv23,Rh23]=RL(freq,d,theta1,ep2r,ep3r,sig)
 % calculate coefficients of Raleigh Layer
 %%
 A=pi/(4*gx*gy);
