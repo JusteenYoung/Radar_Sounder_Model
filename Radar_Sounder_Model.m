@@ -55,7 +55,7 @@ d=2; % layer depth
 % apply numerical method to surface scattering 
 
 % [atv,ath,a,delay,Tv12,Tv21,Th12,Th21,Rv12,Rh12,Rv23,Rh23]=RL(freq,d,theta1,ep2r,ep3r,sig)
-% calculate coefficients of Raleigh Layer
+% calculate coefficients of Regolith Layer
 %%
 A=pi/(4*gx*gy);
 cs=4*pi*h0^4/A; % cross section
@@ -98,10 +98,10 @@ function [DB]=dB(x)
 DB=10*log10(x);
 end
 
-%% coefficients of Rayleigh Layer
+%% coefficients of Regolithh Layer
 function [atv,ath,a,delay,Tv12,Tv21,Th12,Th21,Rv12,Rh12,Rv23,Rh23]...
     =RL(freq,d,theta1,ep2r,ep3r,sig)
-% a = attenuation (power loss is squred wave loss)
+% a = attenuation (1-way power loss is double wave loss)
 % atv, ath = 2-way attenuation, transmissivity included
 % delay = 2-way time delay
 % T = transmisivity
@@ -117,8 +117,8 @@ k2=k0*sqrt(ep2r); % wave number in 2nd layer
 rk2=real(k2); ik2=-imag(k2); % k2=k2'-i*k2"
 %rk3=real(k3); ik3=-imag(k3); % k3=k3'-i*k3"
 %iep2r=-imag(ep2r); % real part-epsilon-2nd medium-relative
-a=2*ik2;
-tau=a*d;
+a=2*ik2; % 1-way power loss is double wave loss
+ad=a*d;
 
 % angles, transmit coefficient, reflection coefficient
 c1 = cosd(theta1);
